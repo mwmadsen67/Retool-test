@@ -1,4 +1,36 @@
 {
+  "container1": {
+    "row": 4.6,
+    "col": 1,
+    "height": 0.2,
+    "width": 6,
+    "stackPosition": {
+      "object": {
+        "ordinal": 0,
+        "widthType": "fixed",
+        "width": 0,
+        "height": 0
+      }
+    }
+  },
+  "containerTitle1": {
+    "container": "container1",
+    "rowGroup": "header",
+    "height": 0.6,
+    "width": 12
+  },
+  "image1": {
+    "container": "container1",
+    "subcontainer": "00030",
+    "stackPosition": {
+      "object": {
+        "ordinal": 0,
+        "widthType": "fixed",
+        "width": 0,
+        "height": 0
+      }
+    }
+  },
   "text1": {
     "row": 1.4,
     "col": 1,
@@ -8,5 +40,21 @@
     "row": 2.6,
     "col": 1,
     "height": 0.6
+  },
+  "text3": {
+    "container": "container1",
+    "subcontainer": "00030",
+    "row": 0.4,
+    "col": 4,
+    "height": 0.6,
+    "width": 6,
+    "stackPosition": {
+      "object": {
+        "ordinal": 1,
+        "widthType": "fixed",
+        "width": 0,
+        "height": 0
+      }
+    }
   }
 }
