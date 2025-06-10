@@ -1,0 +1,117 @@
+id: code2
+type: datasource
+subtype: JavascriptQuery
+resourceName: JavascriptQuery
+template:
+  queryRefreshTime: ''
+  allowedGroupIds: []
+  streamResponse: false
+  lastReceivedFromResourceAt: null
+  isFunction: false
+  functionParameters: null
+  queryDisabledMessage: ''
+  servedFromCache: false
+  offlineUserQueryInputs: ''
+  functionDescription: null
+  successMessage: ''
+  queryDisabled: ''
+  playgroundQuerySaveId: latest
+  workflowParams: null
+  resourceNameOverride: ''
+  runWhenModelUpdates: false
+  workflowRunExecutionType: sync
+  showFailureToaster: true
+  query: |-
+
+    // Or import puppeteer from 'puppeteer-core';
+
+    // Launch the browser and open a new blank page
+    const browser = await puppeteer.launch({
+        headless: true,
+        executablePath: executablePath(),
+      });
+    const page = await browser.newPage();
+
+    // Navigate the page to a URL.
+    await page.goto('https://developer.chrome.com/');
+
+    // Set screen size.
+    await page.setViewport({width: 1080, height: 1024});
+
+    // Type into search box using accessible input name.
+    await page.locator('aria/Search').fill('automate beyond recorder');
+
+    // Wait and click on first result.
+    await page.locator('.devsite-result-item-link').click();
+
+    // Locate the full title with a unique string.
+    const textSelector = await page
+      .locator('text/Customize and automate')
+      .waitHandle();
+    const fullTitle = await textSelector?.evaluate(el => el.textContent);
+
+    // Print the full title.
+    console.log('The title of this blog post is "%s".', fullTitle);
+
+    await browser.close();
+  playgroundQueryUuid: ''
+  playgroundQueryId: null
+  error: null
+  workflowRunBodyType: raw
+  privateParams: []
+  queryRunOnSelectorUpdate: false
+  runWhenPageLoadsDelay: ''
+  data: null
+  importedQueryInputs: {}
+  _additionalScope: []
+  isImported: false
+  showSuccessToaster: true
+  cacheKeyTtl: ''
+  requestSentTimestamp: null
+  metadata: null
+  queryRunTime: null
+  changesetObject: ''
+  offlineOptimisticResponse: null
+  errorTransformer: return data.error
+  finished: null
+  confirmationMessage: null
+  isFetching: false
+  changeset: ''
+  rawData: null
+  queryTriggerDelay: '0'
+  resourceTypeOverride: null
+  watchedParams: []
+  enableErrorTransformer: false
+  showLatestVersionUpdatedWarning: false
+  timestamp: 0
+  evalType: script
+  importedQueryDefaults: {}
+  enableTransformer: false
+  showUpdateSetValueDynamicallyToggle: true
+  overrideOrgCacheForUserCache: false
+  runWhenPageLoads: false
+  transformer: return data
+  events: []
+  queryTimeout: '10000'
+  workflowId: null
+  requireConfirmation: false
+  queryFailureConditions: ''
+  changesetIsObject: false
+  enableCaching: false
+  allowedGroups: []
+  offlineQueryType: None
+  queryThrottleTime: '750'
+  updateSetValueDynamically: false
+  notificationDuration: ''
+style: {}
+createdAt: 2025-05-01T20:56:28.849Z
+blockData:
+  top: 432
+  left: 480
+  uuid: 361f5e6d-440d-4e8b-b3b1-978c8628d58c
+  pluginId: code2
+  blockType: code
+  editorType: JavascriptQuery
+  resourceName: JavascriptQuery
+  incomingOnSuccessEdges:
+    - 4a60f5bb-52ce-4d59-9556-a0e7e1e514f7
