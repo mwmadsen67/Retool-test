@@ -1,7 +1,8 @@
-id: startTrigger
+id: query2
 type: datasource
-subtype: JavascriptQuery
-resourceName: JavascriptQuery
+subtype: RetoolStorageQuery
+resourceName: retool_storage
+resourceDisplayName: retool_storage
 template:
   queryRefreshTime: ''
   allowedGroupIds: []
@@ -15,13 +16,15 @@ template:
   functionDescription: null
   successMessage: ''
   queryDisabled: ''
+  dataSource: []
   playgroundQuerySaveId: latest
   workflowParams: null
   resourceNameOverride: ''
-  runWhenModelUpdates: false
+  runWhenModelUpdates: true
   workflowRunExecutionType: sync
   showFailureToaster: true
-  query: return null
+  fileName: ''
+  query: ''
   playgroundQueryUuid: ''
   playgroundQueryId: null
   error: null
@@ -29,15 +32,18 @@ template:
   privateParams: []
   queryRunOnSelectorUpdate: false
   runWhenPageLoadsDelay: ''
-  data: null
+  data: ''
+  selectFolderNameBy: dropdown
   importedQueryInputs: {}
-  _additionalScope: []
   isImported: false
   showSuccessToaster: true
   cacheKeyTtl: ''
   requestSentTimestamp: null
   metadata: null
   queryRunTime: null
+  actionType: listFolders
+  shouldOverwriteOnNameCollision: false
+  pageSize: '100'
   changesetObject: ''
   offlineOptimisticResponse: null
   errorTransformer: return data.error
@@ -46,20 +52,28 @@ template:
   isFetching: false
   changeset: ''
   rawData: null
+  isPublic: false
   queryTriggerDelay: '0'
   resourceTypeOverride: null
   watchedParams: []
   enableErrorTransformer: false
   showLatestVersionUpdatedWarning: false
+  dynamicFileId: false
   timestamp: 0
   evalType: script
+  enableAsyncFileUpload: false
   importedQueryDefaults: {}
   enableTransformer: false
   showUpdateSetValueDynamicallyToggle: true
+  fileId: ''
+  uploadBy: component
+  pageNumber: '1'
   overrideOrgCacheForUserCache: false
+  folderName: ''
   runWhenPageLoads: false
   transformer: return data
   events: []
+  newFolderName: ''
   queryTimeout: '10000'
   workflowId: null
   requireConfirmation: false
@@ -71,16 +85,14 @@ template:
   queryThrottleTime: '750'
   updateSetValueDynamically: false
   notificationDuration: ''
-style: {}
-createdAt: 2025-05-01T20:03:47.259Z
+createdAt: 2025-06-10T16:38:32.164Z
 blockData:
-  top: 48
-  left: 48
-  uuid: 4a60f5bb-52ce-4d59-9556-a0e7e1e514f7
-  options: {}
-  pluginId: startTrigger
-  blockType: webhook
-  editorType: JavascriptQuery
-  isMinimized: false
-  resourceName: JavascriptQuery
-  incomingOnSuccessEdges: []
+  top: 64
+  left: 1504
+  uuid: f85274d1-12b1-48f1-9635-da55d26b92be
+  pluginId: query2
+  blockType: default
+  editorType: RetoolStorageQuery
+  resourceName: retool_storage
+  incomingOnSuccessEdges:
+    - 91b68b95-758f-457a-8441-713482618548
