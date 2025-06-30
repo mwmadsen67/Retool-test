@@ -99,7 +99,7 @@
         label="Role"
         optionList={{
           mode: "mapped",
-          mappedData: '["Viewer", "Editor", "Admin"]',
+          mappedData: "['Viewer', 'Editor', 'Admin']",
         }}
         placeholder="Select option"
         position="center"
