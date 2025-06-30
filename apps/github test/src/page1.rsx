@@ -8,37 +8,35 @@
   urlSlug=""
   uuid="5e6cf68b-6001-4e51-bd74-3afdb34223aa"
 >
-  <SqlQueryUnified
-    id="getUsers"
-    query={include("../lib/getUsers.sql", "string")}
-    resourceDisplayName="retool_db"
-    resourceName="163c7f0d-401e-4b68-adf9-84b7c3368b63"
-    warningCodes={[]}
+  <GoogleSheetsQuery
+    id="getUnixData"
+    resourceDisplayName="google sheets test"
+    resourceName="f6830784-dfb2-4c52-b8db-e12921fea9da"
+    spreadsheetId="19rFpVrK4AJFqVhjsoWDrc6WxjksiKAmb04yRMgfLnrk"
   />
-  <SqlQueryUnified
-    id="updateUsers"
-    actionType="BULK_UPDATE_BY_KEY"
+  <GoogleSheetsQuery
+    id="updateUnixData"
+    actionType="bulkUpdate"
     bulkUpdatePrimaryKey="id"
-    changeset={'[{"key":"role","value":"{{ table1.changesetArray}}"}]'}
-    editorMode="gui"
+    bulkUpdateRows="{{ unixTable.changesetArray }}"
     notificationDuration={4.5}
-    records="{{ table1.changesetArray }}"
-    resourceDisplayName="retool_db"
-    resourceName="163c7f0d-401e-4b68-adf9-84b7c3368b63"
+    resourceDisplayName="google sheets test"
+    resourceName="f6830784-dfb2-4c52-b8db-e12921fea9da"
     runWhenModelUpdates={false}
     showSuccessToaster={false}
-    tableName="sample_users"
+    spreadsheetId="19rFpVrK4AJFqVhjsoWDrc6WxjksiKAmb04yRMgfLnrk"
+    valueFormatting="unformatted"
   >
     <Event
       event="success"
       method="trigger"
       params={{}}
-      pluginId="getUsers"
+      pluginId="getUnixData"
       type="datasource"
       waitMs="0"
       waitType="debounce"
     />
-  </SqlQueryUnified>
+  </GoogleSheetsQuery>
   <Frame
     id="$main"
     enableFullBleed={false}
@@ -79,21 +77,21 @@
       </View>
     </Container>
     <Table
-      id="table1"
+      id="unixTable"
       cellSelection="none"
       clearChangesetOnSave={true}
-      data="{{ getUsers.data }}"
+      data="{{ getUnixData.data }}"
       defaultSelectedRow={{ mode: "index", indexType: "display", index: 0 }}
       emptyMessage="No rows found"
       enableSaveActions={true}
-      primaryKeyColumnId="da9b3"
+      primaryKeyColumnId="b3c14"
       showBorder={true}
       showFooter={true}
       showHeader={true}
       toolbarPosition="bottom"
     >
       <Column
-        id="da9b3"
+        id="b3c14"
         alignment="right"
         editableOptions={{ showStepper: true }}
         format="decimal"
@@ -103,57 +101,36 @@
         label="ID"
         placeholder="Enter value"
         position="center"
-        size={48}
+        size={100}
         summaryAggregationMode="none"
       />
       <Column
-        id="b233b"
-        alignment="left"
-        format="string"
-        groupAggregationMode="none"
-        key="name"
-        label="Name"
+        id="d6e8f"
+        alignment="right"
+        editableOptions={{ showStepper: true }}
+        format="decimal"
+        formatOptions={{ showSeparators: true, notation: "standard" }}
+        groupAggregationMode="sum"
+        key="user_id"
+        label="User ID"
         placeholder="Enter value"
         position="center"
-        size={149}
+        size={100}
         summaryAggregationMode="none"
       />
       <Column
-        id="d1bc8"
+        id="2176f"
         alignment="left"
-        format="link"
-        formatOptions={{ showUnderline: "hover" }}
-        groupAggregationMode="none"
-        key="email"
-        label="Email"
-        position="center"
-        size={205}
-        summaryAggregationMode="none"
-      />
-      <Column
-        id="18a97"
-        alignment="left"
-        format="datetime"
-        groupAggregationMode="none"
-        key="signup_date"
-        label="Signup date"
-        placeholder="Enter value"
-        position="center"
-        size={160}
-        summaryAggregationMode="none"
-      />
-      <Column
-        id="2b5b8"
-        alignment="left"
-        editable="true"
+        editable={true}
         format="tag"
         formatOptions={{ automaticColors: true }}
         groupAggregationMode="none"
-        key="role"
-        label="Role"
+        key="activity_type"
+        label="Activity type"
         optionList={{
           mode: "mapped",
-          mappedData: "['Viewer','Admin','Editor']",
+          mappedData:
+            "['Login','Purchase','Page View','Signup','Logout','Api Call']",
         }}
         placeholder="Select option"
         position="center"
@@ -162,12 +139,40 @@
         valueOverride="{{ _.startCase(item) }}"
       />
       <Column
-        id="1af6a"
+        id="25e83"
+        alignment="right"
+        editableOptions={{ showStepper: true }}
+        format="decimal"
+        formatOptions={{ showSeparators: true, notation: "standard" }}
+        groupAggregationMode="sum"
+        key="timestamp_seconds"
+        label="Timestamp seconds"
+        placeholder="Enter value"
+        position="center"
+        size={100}
+        summaryAggregationMode="none"
+      />
+      <Column
+        id="584ca"
+        alignment="right"
+        editableOptions={{ showStepper: true }}
+        format="decimal"
+        formatOptions={{ showSeparators: true, notation: "standard" }}
+        groupAggregationMode="sum"
+        key="timestamp_milliseconds"
+        label="Timestamp milliseconds"
+        placeholder="Enter value"
+        position="center"
+        size={100}
+        summaryAggregationMode="none"
+      />
+      <Column
+        id="31215"
         alignment="left"
-        format="boolean"
+        format="string"
         groupAggregationMode="none"
-        key="enabled"
-        label="Enabled"
+        key="description"
+        label="Description"
         placeholder="Enter value"
         position="center"
         size={100}
@@ -188,7 +193,7 @@
         <Event
           event="clickToolbar"
           method="exportData"
-          pluginId="table1"
+          pluginId="unixTable"
           type="widget"
           waitMs="0"
           waitType="debounce"
@@ -203,7 +208,7 @@
         <Event
           event="clickToolbar"
           method="refresh"
-          pluginId="table1"
+          pluginId="unixTable"
           type="widget"
           waitMs="0"
           waitType="debounce"
@@ -213,7 +218,7 @@
         event="save"
         method="trigger"
         params={{}}
-        pluginId="updateUsers"
+        pluginId="updateUnixData"
         type="datasource"
         waitMs="0"
         waitType="debounce"
